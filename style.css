@@ -38,9 +38,12 @@ aside{
    color: whitesmoke;
    padding: 16px;
    padding-top: 32px;
+   align-items: center;
+   display: flex;
+   flex-direction: column;
 }
 
-#form{
+.before-form{
    margin-top: 64px;
    display: grid;
    grid-template-columns: max-content max-content;
@@ -50,6 +53,22 @@ aside{
    border-radius: 10px;
    padding: 16px;
    background-color: hsl(23, 8%, 40%);
+   transform: scale(0.00);
+   visibility: hidden;
+}
+
+.after-form{
+   margin-top: 64px;
+   display: grid;
+   grid-template-columns: max-content max-content;
+   row-gap: 32px;
+   column-gap: 8px;
+   border: 1px solid rgb(248, 246, 244);
+   border-radius: 10px;
+   padding: 16px;
+   background-color: hsl(23, 8%, 40%);
+   transition: ease-out 500ms;
+   transform: scale(1)
 }
 
 #form p{
@@ -71,7 +90,7 @@ form input[type="number"]{
    padding: 3px;
 }
 
-#form button{
+#book-submit{
    grid-column: 1 / 3;
    width: 50%;
    justify-self: end;
@@ -80,7 +99,22 @@ form input[type="number"]{
    border-radius: 10px;
    color: whitesmoke;
    padding:  6px 18px;
+   transition: 100ms;
 }
+
+#book-submit:hover, #new-book:hover{
+   cursor: pointer;
+   background-color: hsl(17, 66%, 60%);
+   transform: translateY(0.05em);
+}
+
+
+#book-submit:active, #new-book:active{
+   cursor: pointer;
+   background-color: hsl(17, 70%, 40%);
+   transform: translateY(0.1em);
+}
+
 
 footer{
    background-color: rgb(219, 140, 108);
@@ -92,3 +126,33 @@ footer{
 .library{
    background-color: rgb(209, 198, 191);
 }
+
+.valid{
+   margin: 0;
+   background-color: rgb(15, 152, 15);
+   padding: 3px;
+   border-radius: 3px;
+   display: flex;
+   justify-content: space-between;
+   grid-column: 1/3;
+}
+
+#close{
+   font-size: 1rem;
+}
+
+#close:hover{
+   color: white;
+   cursor: pointer;
+}
+
+#new-book{
+   background-color: rgb(219, 140, 108);;
+   border: none;
+   border-radius: 10px;
+   color: whitesmoke;
+   padding:  6px 18px;
+   transition: 100ms;
+   margin-top: 32px;
+}
+

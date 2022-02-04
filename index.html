@@ -6,6 +6,9 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="normalize.css">
+   <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet">
    <link rel="stylesheet" href="style.css">
    <script src="./app.js" defer></script>
    <title>Document</title>
@@ -22,8 +25,11 @@
    </header>
 
    <aside>
-      <form id="form">
-         <p>Add a book to your library :</p>
+      <div>
+         <button id="new-book">NEW BOOK</button>
+      </div>
+      <form id="form" class="before-form">
+         <p id="form-title">Add a book to your library :</p>
          <label for="title">Title</label>
          <input type="text" name="title" id="title">
          <label for="author">Author</label>
