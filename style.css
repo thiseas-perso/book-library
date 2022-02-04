@@ -123,8 +123,16 @@ footer{
    padding:  24px 18px;
 }
 
-.library{
+main{
    background-color: rgb(209, 198, 191);
+   padding: 16px;
+}
+
+.library{
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   gap: 30px;
+   grid-template-rows: auto;
 }
 
 .valid{
@@ -156,3 +164,11 @@ footer{
    margin-top: 32px;
 }
 
+.card{
+   background-color: whitesmoke;
+   border-radius: 8px;
+   border-left: 8px solid rgb(235	166 32);
+   padding: 32px;
+   color: black;
+   font-weight: 200;
+}
