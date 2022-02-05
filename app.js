@@ -28,29 +28,33 @@ function submitValidation() {
     banner = true;
     const validateBanner = document.createElement('div')
     const validateText = document.createElement('p')
-    const closeBanner = document.createElement('span')
-    closeBanner.innerText = "cancel"
-    closeBanner.setAttribute('class', 'material-icons-outlined close')
-    closeBanner.setAttribute('id', 'close')
-    closeBanner.addEventListener('click', (e) => {
-      form.removeChild(validateBanner)
-      banner = false;
-    })
+    const closeBtn = document.createElement('span')
+    createDlt(closeBtn, form, validateBanner)
     validateBanner.setAttribute('class', 'valid')
-    validateBanner.appendChild(validateText)
     validateText.innerText = "Book added!"
-    validateBanner.appendChild(closeBanner)
+    validateBanner.appendChild(validateText)
+    validateBanner.appendChild(closeBtn)
     form.insertBefore(validateBanner, formTitle)
   }
 }
 
+function createDlt(btn, parent, container) {
+  btn.innerText = "cancel"
+  btn.setAttribute('class', 'material-icons-outlined close')
+  btn.setAttribute('id', 'close')
+  btn.addEventListener('click', (e) => {
+    parent.removeChild(container)
+    banner = false;
+  })
+}
+
 
 function addBookToLibrary() {
-  let bookTitle = title.value
-  let bookAuthor = author.value
-  let bookRead = read.checked
-  let bookPages = pages.value
-  let book = new Book(bookTitle, bookAuthor, bookPages, bookRead)
+  const bookTitle = title.value
+  const bookAuthor = author.value
+  const bookRead = read.checked
+  const bookPages = pages.value
+  const book = new Book(bookTitle, bookAuthor, bookPages, bookRead)
   myLibrary.push(book)
   addBookToPage(book)
   form.reset()
@@ -68,22 +72,13 @@ form.addEventListener('submit', (e) => {
 
 
 function addBookToPage(book) {
-  let cardTitle = document.createElement('h2')
-  let cardAuthor = document.createElement('p')
-  let cardPages = document.createElement('p')
-  let cardRead = document.createElement('button')
-  let card = document.createElement('div')
-
+  const cardTitle = document.createElement('h2')
+  const cardAuthor = document.createElement('p')
+  const cardPages = document.createElement('p')
+  const cardRead = document.createElement('button')
+  const card = document.createElement('div')
   const dltBook = document.createElement('span')
-  dltBook.innerText = "cancel"
-  dltBook.setAttribute('class', 'material-icons-outlined dlt')
-  dltBook.setAttribute('id', 'dlt')
-  dltBook.addEventListener('click', (e) => {
-    let index = e.target.parentElement.id.slice(4)
-
-    library.removeChild(e.target.parentElement)
-    myLibrary.splice(index, 1)
-  })
+  dltBookBtn(dltBook, library)
 
   if (book.read) {
     cardRead.setAttribute('id', 'btn-read')
@@ -94,7 +89,6 @@ function addBookToPage(book) {
   }
 
   cardRead.addEventListener('click', toggleRead)
-
   card.setAttribute('class', 'card')
   card.setAttribute('id', `book${myLibrary.length - 1}`)
   cardTitle.innerText = `${book.title}`
@@ -108,6 +102,16 @@ function addBookToPage(book) {
   library.appendChild(card)
 }
 
+function dltBookBtn(dltBtn, container) {
+  dltBtn.innerText = "cancel"
+  dltBtn.setAttribute('class', 'material-icons-outlined dlt')
+  dltBtn.setAttribute('id', 'dlt')
+  dltBtn.addEventListener('click', (e) => {
+    let index = e.target.parentElement.id.slice(4)
+    container.removeChild(e.target.parentElement)
+    myLibrary.splice(index, 1)
+  })
+}
 
 
 function toggleRead(e) {
@@ -148,15 +152,8 @@ function displayBooks() {
 
 
     const dltBook = document.createElement('span')
-    dltBook.innerText = "cancel"
-    dltBook.setAttribute('class', 'material-icons-outlined dlt')
-    dltBook.setAttribute('id', 'dlt')
-    dltBook.addEventListener('click', (e) => {
-      let index = e.target.parentElement.id.slice(4)
+    dltBookBtn(dltBook, library)
 
-      library.removeChild(e.target.parentElement)
-      myLibrary.splice(index, 1)
-    })
 
     card.setAttribute('class', 'card')
     card.setAttribute('id', `book${i}`)
