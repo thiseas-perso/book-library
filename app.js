@@ -1,5 +1,3 @@
-
-
 const form = document.querySelector('#form')
 const formTitle = document.querySelector('#form-title')
 const title = document.querySelector('#title')
@@ -9,7 +7,7 @@ const read = document.querySelector('#read')
 const newButton = document.querySelector('#new-book')
 const library = document.querySelector('.library')
 
-
+let banner = false;
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -19,9 +17,6 @@ function Book(title, author, pages, read) {
   this.read = read
 }
 
-
-
-let banner = false;
 
 function submitValidation() {
   if (!banner) {
@@ -37,6 +32,7 @@ function submitValidation() {
     form.insertBefore(validateBanner, formTitle)
   }
 }
+
 
 function createDlt(btn, parent, container) {
   btn.innerText = "cancel"
@@ -60,15 +56,6 @@ function addBookToLibrary() {
   form.reset()
   submitValidation()
 }
-
-newButton.addEventListener('click', (e) => {
-  form.setAttribute('class', 'after-form')
-})
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault()
-  addBookToLibrary()
-})
 
 
 function addBookToPage(book) {
@@ -109,7 +96,8 @@ function dltBookBtn(dltBtn, container) {
   dltBtn.addEventListener('click', (e) => {
     let index = e.target.parentElement.id.slice(4)
     container.removeChild(e.target.parentElement)
-    myLibrary.splice(index, 1)
+    console.log(index)
+    // myLibrary.splice(index, 1)
   })
 }
 
@@ -127,6 +115,22 @@ function toggleRead(e) {
     e.target.innerText = "read"
   }
 }
+
+
+
+newButton.addEventListener('click', (e) => {
+  form.setAttribute('class', 'after-form')
+})
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+  addBookToLibrary()
+})
+
+
+
+
+
 
 
 
@@ -149,11 +153,8 @@ function displayBooks() {
     let cardRead = document.createElement('button')
     let card = document.createElement('div')
 
-
-
     const dltBook = document.createElement('span')
     dltBookBtn(dltBook, library)
-
 
     card.setAttribute('class', 'card')
     card.setAttribute('id', `book${i}`)
