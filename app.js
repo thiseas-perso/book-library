@@ -51,14 +51,16 @@ function addBookToLibrary() {
   const bookRead = read.checked
   const bookPages = pages.value
   const book = new Book(bookTitle, bookAuthor, bookPages, bookRead)
-  myLibrary.push(book)
+  const id = `book${myLibrary.length}`
+  book.id = id
+  myLibrary.push(book, id)
   addBookToPage(book)
   form.reset()
   submitValidation()
 }
 
 
-function addBookToPage(book) {
+function addBookToPage(book, id) {
   const cardTitle = document.createElement('h2')
   const cardAuthor = document.createElement('p')
   const cardPages = document.createElement('p')
@@ -77,7 +79,7 @@ function addBookToPage(book) {
 
   cardRead.addEventListener('click', toggleRead)
   card.setAttribute('class', 'card')
-  card.setAttribute('id', `book${myLibrary.length - 1}`)
+  card.setAttribute('id', `${id}`)
   cardTitle.innerText = `${book.title}`
   cardAuthor.innerText = `${book.author}`
   cardPages.innerText = `${book.pages} pages`
@@ -94,12 +96,20 @@ function dltBookBtn(dltBtn, container) {
   dltBtn.setAttribute('class', 'material-icons-outlined dlt')
   dltBtn.setAttribute('id', 'dlt')
   dltBtn.addEventListener('click', (e) => {
-    let index = e.target.parentElement.id.slice(4)
-    container.removeChild(e.target.parentElement)
-    console.log(index)
+    console.log(e.target)
+    // container.removeChild(e.target.parentElement)
+
+    // let index = e.target.parentElement.id.slice(4)
+    // console.log(index)
     // myLibrary.splice(index, 1)
   })
 }
+
+// function dltFromLibrary(book){
+//   for (let i=0; i<myLibrary.length; i++){
+//     if(myLibrary[i].name === )
+//   }
+// }
 
 
 function toggleRead(e) {
@@ -141,9 +151,16 @@ form.addEventListener('submit', (e) => {
 const lotr = new Book('LOTR', 'Tolkien', 500, true)
 const hpOne = new Book('HarryPotter 1', 'JKR', 300, true)
 const hpTwo = new Book('HarryPotter 2', 'JKR', 400, true)
-myLibrary.push(lotr)
-myLibrary.push(hpOne)
-myLibrary.push(hpTwo)
+let seedArr = [lotr, hpOne, hpTwo]
+function seed() {
+  for (let i = 0; i < seedArr.length; i++) {
+    seedArr[i].id = `book${myLibrary.length}`
+    myLibrary.push(seedArr[i])
+  }
+}
+
+seed()
+
 
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
