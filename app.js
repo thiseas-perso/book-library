@@ -10,11 +10,15 @@ const library = document.querySelector('.library')
 let banner = false;
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title
-  this.author = author
-  this.pages = pages
-  this.read = read
+class Book {
+
+  constructor(title, author, pages, read) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
+
+  }
 }
 
 
@@ -51,8 +55,7 @@ function addBookToLibrary() {
   const bookRead = read.checked
   const bookPages = pages.value
   const book = new Book(bookTitle, bookAuthor, bookPages, bookRead)
-  const id = `book${myLibrary.length}`
-  book.id = id
+  book.id = `book${myLibrary.length}`
   myLibrary.push(book)
   addBookToPage(book)
   form.reset()
@@ -60,7 +63,7 @@ function addBookToLibrary() {
 }
 
 
-function addBookToPage(book, id) {
+function addBookToPage(book) {
   const cardTitle = document.createElement('h2')
   const cardAuthor = document.createElement('p')
   const cardPages = document.createElement('p')
@@ -79,7 +82,7 @@ function addBookToPage(book, id) {
 
   cardRead.addEventListener('click', toggleRead)
   card.setAttribute('class', 'card')
-  card.setAttribute('id', `${id}`)
+  card.setAttribute('id', `book${myLibrary.length - 1}`)
   cardTitle.innerText = `${book.title}`
   cardAuthor.innerText = `${book.author}`
   cardPages.innerText = `${book.pages} pages`
