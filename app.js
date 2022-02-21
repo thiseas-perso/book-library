@@ -137,8 +137,21 @@ form.addEventListener('submit', (e) => {
 
 
 
+const inputs = document.querySelectorAll('input')
 
+inputs.forEach(input => {
+  input.addEventListener('input', () => {
+    input.setCustomValidity('');
+    input.checkValidity();
+  })
+})
 
+inputs.forEach(input => {
+  input.addEventListener('invalid', () => {
+    if (input.validity.valueMissing)
+      input.setCustomValidity('*** All fields are required ***');
+  })
+})
 
 
 
