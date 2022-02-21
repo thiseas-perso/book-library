@@ -17,7 +17,6 @@ class Book {
     this.author = author
     this.pages = pages
     this.read = read
-
   }
 }
 
